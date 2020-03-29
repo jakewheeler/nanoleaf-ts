@@ -27,7 +27,6 @@ export class NanoleafState {
   };
 
   private modifyOnOffState = async (state: boolean): Promise<void> => {
-    console.log(state);
     try {
       const body = {
         on: {
