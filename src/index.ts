@@ -5,11 +5,13 @@ config();
 
 const main = async (): Promise<void> => {
   let nanoleaf = new Nanoleaf({
-    ipAddress: process.env.IP_ADDRESS!,
+    ipAddress: process.env.ALEX_ADDRESS!,
     apiVersion: '/api/v1/',
     port: process.env.PORT!,
-    authToken: process.env.AUTH_TOKEN!
+    authToken: process.env.ALEX_TOKEN!
   });
+
+  await nanoleaf.state.toggleOnOffState();
 };
 
 main();
