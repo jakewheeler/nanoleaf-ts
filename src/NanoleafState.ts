@@ -39,41 +39,4 @@ export class NanoleafState {
       throw err;
     }
   };
-
-  public turnOn = async (): Promise<boolean> => {
-    try {
-      const isOn = await this.isTurnedOn();
-      if (!isOn) {
-        const body = {
-          on: {
-            value: true
-          }
-        };
-        await axios.put(this.url, body);
-        return true;
-      }
-
-      return false;
-    } catch (err) {
-      throw err;
-    }
-  };
-
-  public turnOff = async () => {
-    try {
-      const isOn = await this.isTurnedOn();
-      if (isOn) {
-        const body = {
-          on: {
-            value: false
-          }
-        };
-        await axios.put(this.url, body);
-        return true;
-      }
-      return false;
-    } catch (err) {
-      throw err;
-    }
-  };
 }
