@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { IOnOffState } from './interfaces/Nanoleaf.interfaces';
+import { OnOffState, Brightness } from './interfaces/Nanoleaf.interfaces';
 
 export class NanoleafState {
   private url: string;
@@ -11,7 +11,7 @@ export class NanoleafState {
   public isTurnedOn = async (): Promise<boolean> => {
     try {
       const onOffUrl = `${this.url}/on`;
-      const currentState = await axios.get<IOnOffState>(onOffUrl);
+      const currentState = await axios.get<OnOffState>(onOffUrl);
       let { value } = currentState.data;
 
       return value;
@@ -24,6 +24,16 @@ export class NanoleafState {
     const isOn = await this.isTurnedOn();
     const currentState = await this.modifyOnOffState(isOn);
     return currentState;
+  };
+
+  public brightness = async (): Promise<Brightness> => {
+    try {
+      const brightnessUrl = `${this.url}/brightness`;
+      const response = await axios.get<Brightness>(brightnessUrl);
+      return response.data;
+    } catch (err) {
+      throw err;
+    }
   };
 
   private modifyOnOffState = async (state: boolean): Promise<void> => {

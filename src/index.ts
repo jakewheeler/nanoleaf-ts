@@ -1,17 +1,18 @@
-import Nanoleaf from './Nanoleaf';
+import Nanoleaf from './nanoleaf';
 import { config } from 'dotenv';
 
 config();
 
 const main = async (): Promise<void> => {
   let nanoleaf = new Nanoleaf({
-    ipAddress: process.env.ALEX_ADDRESS!,
+    ipAddress: process.env.IP_ADDRESS!,
     apiVersion: '/api/v1/',
     port: process.env.PORT!,
-    authToken: process.env.ALEX_TOKEN!
+    authToken: process.env.AUTH_TOKEN!
   });
 
-  await nanoleaf.state.toggleOnOffState();
+  let f = await nanoleaf.state.brightness();
+  console.log(f);
 };
 
 main();
