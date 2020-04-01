@@ -9,29 +9,35 @@ export interface OnOffState {
   value: boolean;
 }
 
-export interface Brightness {
+export interface LightValues {
   value: number;
   max: number;
   min: number;
 }
 
 export interface State {
-  brightness: Brightness;
+  brightness: LightValues;
   colorMode: string;
-  ct: { value: number; max: number; min: number };
-  hue: { value: number; max: number; min: number };
+  ct: LightValues;
+  hue: LightValues;
   on: OnOffState;
-  sat: { value: 0; max: number; min: number };
+  sat: LightValues;
 }
 
-export interface Effects {
+export interface Effect {
   effectsList: string[];
   select: string;
 }
 
 export interface PanelLayout {
-  globalOrientation: { value: number; max: number; min: 0 };
-  layout: { numpPanels: number; sideLength: number; positionData: [[]] };
+  globalOrientation: LightValues;
+  layout: LayoutValue;
+}
+
+export interface LayoutValue {
+  numpPanels: number;
+  sideLength: number;
+  positionData: object[];
 }
 
 export interface Rhythm {
@@ -42,7 +48,13 @@ export interface Rhythm {
   rhythmConnected: boolean;
   rhythmId: number;
   rhythmMode: number;
-  rhythmPos: { x: number; y: number; o: number };
+  rhythmPos: PositionData;
+}
+
+export interface PositionData {
+  x: number;
+  y: number;
+  o: number;
 }
 
 export interface NanoleafAttributes {
@@ -54,7 +66,7 @@ export interface NanoleafAttributes {
   model: string;
   cloudHash: object;
   discovery: object;
-  effects: Effects;
+  effects: Effect;
   firmwareUpgrade: object;
   panelLayout: PanelLayout;
   rhythm: Rhythm;
