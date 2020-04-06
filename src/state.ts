@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { OnOffState, LightValues } from './interfaces/Nanoleaf.interfaces';
 
-export class State {
+export default class State {
   private url: string;
 
   constructor(url: string) {

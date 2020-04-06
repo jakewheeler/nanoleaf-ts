@@ -12,7 +12,7 @@ const main = async (): Promise<void> => {
   });
 
   try {
-    let f = await nanoleaf.effects.setCurrent('bored');
+    let f = await nanoleaf.panels.identify();
     console.log(f);
   } catch (err) {
     console.log(err);

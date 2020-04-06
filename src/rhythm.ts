@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { PositionData } from './interfaces/Nanoleaf.interfaces';
 
-export class Rhythm {
+export default class Rhythm {
   private url: string;
 
   constructor(url: string) {

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export class Effects {
+export default class Effects {
   private url: string;
 
   constructor(url: string) {
@@ -42,6 +42,9 @@ export class Effects {
       throw err;
     }
   };
+
+  // TODO:
+  // Add write for list
 
   private effectExists = async (effectName: string): Promise<boolean> => {
     try {

@@ -3,31 +3,34 @@ import {
   NanoleafProperties,
   NanoleafAttributes
 } from './interfaces/Nanoleaf.interfaces';
-import { State } from './state';
-import { Effects } from './effects';
-import { Layout } from './layout';
-import { Rhythm } from './rhythm';
+import State from './state';
+import Effects from './effects';
+import Layout from './layout';
+import Rhythm from './rhythm';
+import Panels from './panels';
 
 class Nanoleaf {
-  private userData: NanoleafProperties;
-  private baseURL: string;
-  private nState: State;
-  private nEffects: Effects;
-  private nLayout: Layout;
-  private nRhythm: Rhythm;
+  private _userData: NanoleafProperties;
+  private _baseURL: string;
+  private _state: State;
+  private _effects: Effects;
+  private _layout: Layout;
+  private _rhythm: Rhythm;
+  private _panels: Panels;
 
   constructor(userData: NanoleafProperties) {
-    this.userData = userData;
-    this.baseURL = `http://${this.userData.ipAddress}:${this.userData.port}${this.userData.apiVersion}${this.userData.authToken}`;
-    this.nState = new State(this.baseURL);
-    this.nEffects = new Effects(this.baseURL);
-    this.nLayout = new Layout(this.baseURL);
-    this.nRhythm = new Rhythm(this.baseURL);
+    this._userData = userData;
+    this._baseURL = `http://${this._userData.ipAddress}:${this._userData.port}${this._userData.apiVersion}${this._userData.authToken}`;
+    this._state = new State(this._baseURL);
+    this._effects = new Effects(this._baseURL);
+    this._layout = new Layout(this._baseURL);
+    this._rhythm = new Rhythm(this._baseURL);
+    this._panels = new Panels(this._baseURL);
   }
 
   public controllerInfo = async (): Promise<NanoleafAttributes> => {
     try {
-      const controllerInfo = await axios.get<NanoleafAttributes>(this.baseURL);
+      const controllerInfo = await axios.get<NanoleafAttributes>(this._baseURL);
       const info = controllerInfo.data;
       return info;
     } catch (err) {
@@ -36,19 +39,23 @@ class Nanoleaf {
   };
 
   public get state(): State {
-    return this.nState;
+    return this._state;
   }
 
   public get effects(): Effects {
-    return this.nEffects;
+    return this._effects;
   }
 
   public get layout(): Layout {
-    return this.nLayout;
+    return this._layout;
+  }
+
+  public get panels(): Panels {
+    return this._panels;
   }
 
   public get rhythm(): Rhythm {
-    return this.nRhythm;
+    return this._rhythm;
   }
 }
 
