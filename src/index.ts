@@ -11,8 +11,12 @@ const main = async (): Promise<void> => {
     authToken: process.env.AUTH_TOKEN!
   });
 
-  let f = await nanoleaf.layout.getLayout();
-  console.log(f);
+  try {
+    let f = await nanoleaf.effects.setCurrent('bored');
+    console.log(f);
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 main();

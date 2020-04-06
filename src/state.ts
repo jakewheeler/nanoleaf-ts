@@ -76,6 +76,77 @@ export class State {
     }
   };
 
+  public setBrightness = async (
+    value: number,
+    duration?: number
+  ): Promise<void> => {
+    try {
+      if (value < 0 || value > 100)
+        throw new Error(
+          'Brightness value out of range. Must be within range 0-100.'
+        );
+
+      const body = {
+        brightness: {
+          value,
+          duration
+        }
+      };
+      await axios.put(this.url, body);
+    } catch (err) {
+      throw err;
+    }
+  };
+
+  public setHue = async (value: number): Promise<void> => {
+    try {
+      if (value < 0 || value > 361)
+        throw new Error('Hue value out of range. Must be within range 0-360.');
+      const body = {
+        hue: {
+          value
+        }
+      };
+      await axios.put(this.url, body);
+    } catch (err) {
+      throw err;
+    }
+  };
+
+  public setSaturation = async (value: number) => {
+    try {
+      if (value < 0 || value > 100)
+        throw new Error(
+          'Saturation value out of range. Must be within range 0-100.'
+        );
+      const body = {
+        sat: {
+          value
+        }
+      };
+      await axios.put(this.url, body);
+    } catch (err) {
+      throw err;
+    }
+  };
+
+  public setColorTemperature = async (value: number) => {
+    try {
+      if (value < 1200 || value > 6500)
+        throw new Error(
+          'Color temperature value out of range. Must be within range 1200-6500.'
+        );
+      const body = {
+        ct: {
+          value
+        }
+      };
+      await axios.put(this.url, body);
+    } catch (err) {
+      throw err;
+    }
+  };
+
   private modifyOnOffState = async (state: boolean): Promise<void> => {
     try {
       const body = {
