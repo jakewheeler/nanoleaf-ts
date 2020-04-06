@@ -87,4 +87,21 @@ export default class Rhythm {
       throw err;
     }
   };
+
+  public setMode = async (mode: string = 'microphone'): Promise<void> => {
+    // 0 = microphone mode
+    // 1 = aux mode
+    try {
+      if (mode !== 'microphone' && mode !== 'aux')
+        throw new Error(`Rhythm mode value must be "microphone" or "aux".`);
+      const auxUrl = `${this.url}/rhythmMode`;
+      const rhythmMode = mode === 'microphone' ? 0 : 1;
+      const body = {
+        rhythmMode: rhythmMode
+      };
+      await axios.put(auxUrl, body);
+    } catch (err) {
+      throw err;
+    }
+  };
 }

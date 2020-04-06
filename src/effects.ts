@@ -27,8 +27,9 @@ export default class Effects {
     }
   };
 
-  public setCurrent = async (effectName: string) => {
+  public setCurrent = async (effectName: string): Promise<void> => {
     try {
+      if (effectName === '') throw new Error('An effectName is required');
       if (!(await this.effectExists(effectName)))
         throw new Error(
           `Effect with name "${effectName}" does not exist. Check for capitilization errors.`
