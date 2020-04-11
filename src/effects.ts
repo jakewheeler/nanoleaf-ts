@@ -1,4 +1,30 @@
 import axios from 'axios';
+import Request from './request';
+
+type MinMax = {
+  maxValue: number;
+  minValue: number;
+};
+
+type WriteResponse = {
+  animName: string;
+  loop: boolean;
+  palette: {
+    hue: number;
+    saturation: number;
+    brightness: number;
+  }[];
+  version: string;
+  transTime: MinMax;
+  windowSize: number;
+  flowFactor: number;
+  delayTime: MinMax;
+  colorType: string;
+  animType: string;
+  explodeFactor: number;
+  brightnessFactor: MinMax;
+  direction: string;
+};
 
 export default class Effects {
   private url: string;
@@ -10,8 +36,8 @@ export default class Effects {
   public getCurrent = async (): Promise<string> => {
     try {
       const selectUrl = `${this.url}/select`;
-      const response = await axios.get<string>(selectUrl);
-      return response.data;
+      const resp = await Request.get<string>(selectUrl);
+      return resp;
     } catch (err) {
       throw err;
     }
@@ -20,8 +46,8 @@ export default class Effects {
   public getFullList = async (): Promise<string[]> => {
     try {
       const listUrl = `${this.url}/effectsList`;
-      const response = await axios.get<string[]>(listUrl);
-      return response.data;
+      const response = await Request.get<string[]>(listUrl);
+      return response;
     } catch (err) {
       throw err;
     }
@@ -36,7 +62,7 @@ export default class Effects {
         );
 
       const body = {
-        select: effectName
+        select: effectName,
       };
       await axios.put(this.url, body);
     } catch (err) {
@@ -44,8 +70,30 @@ export default class Effects {
     }
   };
 
-  // TODO:
-  // Add write for list
+  public setWrite = async (
+    command: string,
+    animName: string
+  ): Promise<WriteResponse> => {
+    try {
+      if (!command || !animName) throw new Error('Arguments cannot be empty.');
+      if (!(await this.effectExists(animName)))
+        throw new Error(
+          `Animation with name "${animName}" does not exist. Check for capitilization errors.`
+        );
+
+      const body = {
+        write: {
+          command,
+          animName,
+        },
+      };
+
+      const resp = await axios.put<WriteResponse>(this.url, body);
+      return resp.data;
+    } catch (err) {
+      throw err;
+    }
+  };
 
   private effectExists = async (effectName: string): Promise<boolean> => {
     try {

@@ -8,11 +8,11 @@ const main = async (): Promise<void> => {
     ipAddress: process.env.IP_ADDRESS!,
     apiVersion: '/api/v1/',
     port: process.env.PORT!,
-    authToken: process.env.AUTH_TOKEN!
+    authToken: process.env.AUTH_TOKEN!,
   });
 
   try {
-    let f = await nanoleaf.effects.setCurrent('');
+    let f = await nanoleaf.effects.getFullList();
     console.log(f);
   } catch (err) {
     console.log(err);
