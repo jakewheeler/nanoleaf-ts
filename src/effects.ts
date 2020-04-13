@@ -64,7 +64,8 @@ export default class Effects {
       const body = {
         select: effectName,
       };
-      await axios.put(this.url, body);
+      // await axios.put(this.url, body);
+      await Request.put(this.url, body);
     } catch (err) {
       throw err;
     }

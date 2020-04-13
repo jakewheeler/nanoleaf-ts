@@ -14,6 +14,7 @@ const main = async (): Promise<void> => {
   try {
     let f = await nanoleaf.effects.getFullList();
     console.log(f);
+    await nanoleaf.effects.setCurrent('Nemo');
   } catch (err) {
     console.log(err);
   }
