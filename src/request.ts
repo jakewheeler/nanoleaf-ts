@@ -30,23 +30,24 @@ export default class Request {
 
   public static put = <T>(url: string, body: object): Promise<T> => {
     return new Promise<T>((resolve, reject) => {
-      const jsonBody = JSON.stringify(body);
-      const urlObj = new URL(url);
+      const bodyStr = JSON.stringify(body);
+      const parsedUrl = new URL(url);
+
       const options: http.RequestOptions = {
-        hostname: urlObj.hostname,
-        port: urlObj.port,
-        path: urlObj.pathname,
+        hostname: parsedUrl.hostname,
+        port: parsedUrl.port,
+        path: parsedUrl.pathname,
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
-          'Content-Length': jsonBody.length,
+          'Content-Length': bodyStr.length,
         },
       };
 
       let data: any = [];
       http
         .request(options, (res) => {
-          if (res.statusCode! < 200 || res.statusCode! >= 300) {
+          if (Request.statusCodeOutOfRange(res.statusCode!)) {
             return reject(new Error('statusCode=' + res.statusCode));
           }
 
@@ -65,7 +66,11 @@ export default class Request {
           }
           resolve(data);
         })
-        .write(jsonBody);
+        .write(bodyStr);
     });
+  };
+
+  private static statusCodeOutOfRange = (statusCode: number): boolean => {
+    return statusCode! < 200 || statusCode! >= 300 ? true : false;
   };
 }
