@@ -1,4 +1,4 @@
-import axios from 'axios';
+import Request from './request';
 
 export default class Panels {
   private _url: string;
@@ -9,7 +9,7 @@ export default class Panels {
 
   public identify = async () => {
     try {
-      await axios.put(this._url);
+      await Request.put(this._url);
     } catch (err) {
       throw err;
     }

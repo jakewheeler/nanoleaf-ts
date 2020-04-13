@@ -28,7 +28,7 @@ export default class Request {
     });
   };
 
-  public static put = <T>(url: string, body: object): Promise<T> => {
+  public static put = <T>(url: string, body?: object): Promise<T> => {
     return new Promise<T>((resolve, reject) => {
       const bodyStr = JSON.stringify(body);
       const parsedUrl = new URL(url);
@@ -40,7 +40,7 @@ export default class Request {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
-          'Content-Length': bodyStr.length,
+          'Content-Length': bodyStr?.length ?? 0,
         },
       };
 
@@ -48,25 +48,27 @@ export default class Request {
       http
         .request(options, (res) => {
           if (Request.statusCodeOutOfRange(res.statusCode!)) {
-            return reject(new Error('statusCode=' + res.statusCode));
+            return reject(new Error(`statusCode= + ${res.statusCode}`));
           }
 
           res.on('data', (d) => {
             data.push(d);
           });
+
+          res.on('end', () => {
+            try {
+              if (data?.length)
+                data = JSON.parse(Buffer.concat(data).toString());
+            } catch (e) {
+              reject(e);
+            }
+            resolve(data);
+          });
         })
         .on('error', (e) => {
           reject(e);
         })
-        .on('end', () => {
-          try {
-            data = JSON.parse(Buffer.concat(data).toString());
-          } catch (e) {
-            reject(e);
-          }
-          resolve(data);
-        })
-        .write(bodyStr);
+        .write(bodyStr || '');
     });
   };
 

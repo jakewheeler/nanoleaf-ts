@@ -1,4 +1,3 @@
-import axios from 'axios';
 import Request from './request';
 
 type MinMax = {
@@ -64,7 +63,7 @@ export default class Effects {
       const body = {
         select: effectName,
       };
-      // await axios.put(this.url, body);
+
       await Request.put(this.url, body);
     } catch (err) {
       throw err;
@@ -89,8 +88,8 @@ export default class Effects {
         },
       };
 
-      const resp = await axios.put<WriteResponse>(this.url, body);
-      return resp.data;
+      const resp = await Request.put<WriteResponse>(this.url, body);
+      return resp;
     } catch (err) {
       throw err;
     }

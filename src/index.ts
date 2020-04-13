@@ -12,9 +12,8 @@ const main = async (): Promise<void> => {
   });
 
   try {
-    let f = await nanoleaf.effects.getFullList();
+    let f = await nanoleaf.layout.setGlobalOrientation(359);
     console.log(f);
-    await nanoleaf.effects.setCurrent('Nemo');
   } catch (err) {
     console.log(err);
   }

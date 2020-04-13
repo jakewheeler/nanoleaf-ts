@@ -1,4 +1,4 @@
-import axios from 'axios';
+import Request from './request';
 import { LightValues, LayoutValue } from './interfaces/Nanoleaf.interfaces';
 
 export default class Layout {
@@ -11,8 +11,8 @@ export default class Layout {
   public getGlobalOrientation = async (): Promise<LightValues> => {
     try {
       const globalOrientationUrl = `${this._url}/globalOrientation`;
-      const response = await axios.get<LightValues>(globalOrientationUrl);
-      return response.data;
+      const response = await Request.get<LightValues>(globalOrientationUrl);
+      return response;
     } catch (err) {
       throw err;
     }
@@ -26,9 +26,9 @@ export default class Layout {
         );
       const globalOrientationUrl = `${this._url}/globalOrientation`;
       const body = {
-        globalOrientation: { value }
+        globalOrientation: { value },
       };
-      await axios.put(globalOrientationUrl, body);
+      await Request.put(globalOrientationUrl, body);
     } catch (err) {
       throw err;
     }
@@ -37,8 +37,8 @@ export default class Layout {
   public getLayout = async (): Promise<LayoutValue> => {
     try {
       const layoutUrl = `${this._url}/layout`;
-      const response = await axios.get<LayoutValue>(layoutUrl);
-      return response.data;
+      const response = await Request.get<LayoutValue>(layoutUrl);
+      return response;
     } catch (err) {
       throw err;
     }

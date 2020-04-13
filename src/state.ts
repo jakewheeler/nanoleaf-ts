@@ -1,4 +1,4 @@
-import axios from 'axios';
+import Request from './request';
 import { OnOffState, LightValues } from './interfaces/Nanoleaf.interfaces';
 
 export default class State {
@@ -11,8 +11,7 @@ export default class State {
   public isTurnedOn = async (): Promise<boolean> => {
     try {
       const onOffUrl = `${this.url}/on`;
-      const currentState = await axios.get<OnOffState>(onOffUrl);
-      let { value } = currentState.data;
+      const { value } = await Request.get<OnOffState>(onOffUrl);
 
       return value;
     } catch (err) {
@@ -29,8 +28,8 @@ export default class State {
   public getBrightness = async (): Promise<LightValues> => {
     try {
       const brightnessUrl = `${this.url}/brightness`;
-      const response = await axios.get<LightValues>(brightnessUrl);
-      return response.data;
+      const response = await Request.get<LightValues>(brightnessUrl);
+      return response;
     } catch (err) {
       throw err;
     }
@@ -39,8 +38,8 @@ export default class State {
   public getHue = async (): Promise<LightValues> => {
     try {
       const hueUrl = `${this.url}/hue`;
-      const response = await axios.get<LightValues>(hueUrl);
-      return response.data;
+      const response = await Request.get<LightValues>(hueUrl);
+      return response;
     } catch (err) {
       throw err;
     }
@@ -49,8 +48,8 @@ export default class State {
   public getSaturation = async (): Promise<LightValues> => {
     try {
       const satUrl = `${this.url}/sat`;
-      const response = await axios.get<LightValues>(satUrl);
-      return response.data;
+      const response = await Request.get<LightValues>(satUrl);
+      return response;
     } catch (err) {
       throw err;
     }
@@ -59,8 +58,8 @@ export default class State {
   public getColorTemperature = async (): Promise<LightValues> => {
     try {
       const ctUrl = `${this.url}/ct`;
-      const response = await axios.get<LightValues>(ctUrl);
-      return response.data;
+      const response = await Request.get<LightValues>(ctUrl);
+      return response;
     } catch (err) {
       throw err;
     }
@@ -69,8 +68,8 @@ export default class State {
   public getColorMode = async (): Promise<string> => {
     try {
       const colorModeUrl = `${this.url}/colorMode`;
-      const response = await axios.get<string>(colorModeUrl);
-      return response.data;
+      const response = await Request.get<string>(colorModeUrl);
+      return response;
     } catch (err) {
       throw err;
     }
@@ -89,10 +88,10 @@ export default class State {
       const body = {
         brightness: {
           value,
-          duration
-        }
+          duration,
+        },
       };
-      await axios.put(this.url, body);
+      await Request.put(this.url, body);
     } catch (err) {
       throw err;
     }
@@ -104,10 +103,10 @@ export default class State {
         throw new Error('Hue value out of range. Must be within range 0-360.');
       const body = {
         hue: {
-          value
-        }
+          value,
+        },
       };
-      await axios.put(this.url, body);
+      await Request.put(this.url, body);
     } catch (err) {
       throw err;
     }
@@ -121,10 +120,10 @@ export default class State {
         );
       const body = {
         sat: {
-          value
-        }
+          value,
+        },
       };
-      await axios.put(this.url, body);
+      await Request.put(this.url, body);
     } catch (err) {
       throw err;
     }
@@ -138,10 +137,10 @@ export default class State {
         );
       const body = {
         ct: {
-          value
-        }
+          value,
+        },
       };
-      await axios.put(this.url, body);
+      await Request.put(this.url, body);
     } catch (err) {
       throw err;
     }
@@ -151,10 +150,10 @@ export default class State {
     try {
       const body = {
         on: {
-          value: !state
-        }
+          value: !state,
+        },
       };
-      await axios.put(this.url, body);
+      await Request.put(this.url, body);
     } catch (err) {
       throw err;
     }

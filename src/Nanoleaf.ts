@@ -1,7 +1,7 @@
-import axios from 'axios';
+import Request from './request';
 import {
   NanoleafProperties,
-  NanoleafAttributes
+  NanoleafAttributes,
 } from './interfaces/Nanoleaf.interfaces';
 import State from './state';
 import Effects from './effects';
@@ -30,8 +30,7 @@ class Nanoleaf {
 
   public controllerInfo = async (): Promise<NanoleafAttributes> => {
     try {
-      const controllerInfo = await axios.get<NanoleafAttributes>(this._baseURL);
-      const info = controllerInfo.data;
+      const info = await Request.get<NanoleafAttributes>(this._baseURL);
       return info;
     } catch (err) {
       throw err;

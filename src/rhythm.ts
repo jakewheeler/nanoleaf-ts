@@ -1,4 +1,4 @@
-import axios from 'axios';
+import Request from './request';
 import { PositionData } from './interfaces/Nanoleaf.interfaces';
 
 export default class Rhythm {
@@ -11,8 +11,8 @@ export default class Rhythm {
   public isConnected = async (): Promise<boolean> => {
     try {
       const connectedUrl = `${this.url}/rhythmConnected`;
-      const currentState = await axios.get<boolean>(connectedUrl);
-      return currentState.data;
+      const currentState = await Request.get<boolean>(connectedUrl);
+      return currentState;
     } catch (err) {
       throw err;
     }
@@ -21,8 +21,8 @@ export default class Rhythm {
   public isActive = async (): Promise<boolean> => {
     try {
       const activeUrl = `${this.url}/rhythmActive`;
-      const currentState = await axios.get<boolean>(activeUrl);
-      return currentState.data;
+      const currentState = await Request.get<boolean>(activeUrl);
+      return currentState;
     } catch (err) {
       throw err;
     }
@@ -31,8 +31,8 @@ export default class Rhythm {
   public getId = async (): Promise<number> => {
     try {
       const idUrl = `${this.url}/rhythmId`;
-      const currentState = await axios.get<number>(idUrl);
-      return currentState.data;
+      const currentState = await Request.get<number>(idUrl);
+      return currentState;
     } catch (err) {
       throw err;
     }
@@ -41,8 +41,8 @@ export default class Rhythm {
   public getHardwareVersion = async (): Promise<string> => {
     try {
       const hwUrl = `${this.url}/hardwareVersion`;
-      const currentState = await axios.get<string>(hwUrl);
-      return currentState.data;
+      const currentState = await Request.get<string>(hwUrl);
+      return currentState;
     } catch (err) {
       throw err;
     }
@@ -51,8 +51,8 @@ export default class Rhythm {
   public getFirmwareVersion = async (): Promise<string> => {
     try {
       const fwUrl = `${this.url}/firmwareVersion`;
-      const currentState = await axios.get<string>(fwUrl);
-      return currentState.data;
+      const currentState = await Request.get<string>(fwUrl);
+      return currentState;
     } catch (err) {
       throw err;
     }
@@ -61,8 +61,8 @@ export default class Rhythm {
   public isAuxAvailable = async (): Promise<boolean> => {
     try {
       const auxUrl = `${this.url}/auxAvailable`;
-      const currentState = await axios.get<boolean>(auxUrl);
-      return currentState.data;
+      const currentState = await Request.get<boolean>(auxUrl);
+      return currentState;
     } catch (err) {
       throw err;
     }
@@ -71,8 +71,8 @@ export default class Rhythm {
   public getMode = async (): Promise<number> => {
     try {
       const auxUrl = `${this.url}/rhythmMode`;
-      const currentState = await axios.get<number>(auxUrl);
-      return currentState.data;
+      const currentState = await Request.get<number>(auxUrl);
+      return currentState;
     } catch (err) {
       throw err;
     }
@@ -81,25 +81,26 @@ export default class Rhythm {
   public getPositions = async (): Promise<PositionData> => {
     try {
       const posUrl = `${this.url}/rhythmPos`;
-      const currentState = await axios.get<PositionData>(posUrl);
-      return currentState.data;
+      const currentState = await Request.get<PositionData>(posUrl);
+      return currentState;
     } catch (err) {
       throw err;
     }
   };
 
-  public setMode = async (mode: string = 'microphone'): Promise<void> => {
+  public setMode = async (mode: number = 0): Promise<void> => {
     // 0 = microphone mode
     // 1 = aux mode
     try {
-      if (mode !== 'microphone' && mode !== 'aux')
-        throw new Error(`Rhythm mode value must be "microphone" or "aux".`);
+      if (mode !== 0 && mode !== 1)
+        throw new Error(
+          `Rhythm mode value must be 0 for "microphone" or 1 for "aux".`
+        );
       const auxUrl = `${this.url}/rhythmMode`;
-      const rhythmMode = mode === 'microphone' ? 0 : 1;
       const body = {
-        rhythmMode: rhythmMode
+        rhythmMode: mode,
       };
-      await axios.put(auxUrl, body);
+      await Request.put(auxUrl, body);
     } catch (err) {
       throw err;
     }
