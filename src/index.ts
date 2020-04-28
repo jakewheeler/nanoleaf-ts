@@ -12,7 +12,7 @@ const main = async (): Promise<void> => {
   });
 
   try {
-    let f = await nanoleaf.layout.setGlobalOrientation(359);
+    let f = await nanoleaf.controllerInfo();
     console.log(f);
   } catch (err) {
     console.log(err);
