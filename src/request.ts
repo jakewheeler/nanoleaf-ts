@@ -19,7 +19,7 @@ export default class Request {
       http
         .get(url, (res) => {
           if (Request.statusCodeOutOfRange(res.statusCode!)) {
-            return reject(new Error('statusCode=' + res.statusCode));
+            return reject(new Error(`Status code returned ${res.statusCode}`));
           }
 
           res.on('data', (d) => {
@@ -70,7 +70,7 @@ export default class Request {
       http
         .request(options, (res) => {
           if (Request.statusCodeOutOfRange(res.statusCode!)) {
-            return reject(new Error(`statusCode= + ${res.statusCode}`));
+            return reject(new Error(`Status code returned ${res.statusCode}`));
           }
 
           res.on('data', (d) => {
