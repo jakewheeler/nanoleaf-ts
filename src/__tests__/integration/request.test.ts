@@ -2,7 +2,7 @@
     Request class integration tests 👍
 */
 
-import Request from '../request';
+import Request from '../../request';
 
 describe('Request.get', () => {
   test('Should throw error when called with https', async () => {

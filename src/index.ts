@@ -12,7 +12,7 @@ const main = async (): Promise<void> => {
   });
 
   try {
-    let f = await nanoleaf.controllerInfo();
+    let f = await nanoleaf.effects.setCurrent('hi');
     console.log(f);
   } catch (err) {
     console.log(err);
