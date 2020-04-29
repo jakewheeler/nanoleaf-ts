@@ -18,7 +18,7 @@ export default class Request {
       let data: any = [];
       http
         .get(url, (res) => {
-          if (res.statusCode! < 200 || res.statusCode! >= 300) {
+          if (Request.statusCodeOutOfRange(res.statusCode!)) {
             return reject(new Error('statusCode=' + res.statusCode));
           }
 
