@@ -19,7 +19,7 @@ export default class State {
     }
   };
 
-  public toggleOnOffState = async (): Promise<void> => {
+  public toggleOnOffState = async (): Promise<boolean> => {
     const isOn = await this.isTurnedOn();
     const currentState = await this.modifyOnOffState(isOn);
     return currentState;
@@ -146,7 +146,7 @@ export default class State {
     }
   };
 
-  private modifyOnOffState = async (state: boolean): Promise<void> => {
+  private modifyOnOffState = async (state: boolean): Promise<boolean> => {
     try {
       const body = {
         on: {
@@ -154,6 +154,7 @@ export default class State {
         },
       };
       await Request.put(this.url, body);
+      return !state;
     } catch (err) {
       throw err;
     }
