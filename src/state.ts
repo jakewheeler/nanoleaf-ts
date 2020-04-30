@@ -99,7 +99,7 @@ export default class State {
 
   public setHue = async (value: number): Promise<void> => {
     try {
-      if (value < 0 || value > 361)
+      if (value < 0 || value > 360)
         throw new Error('Hue value out of range. Must be within range 0-360.');
       const body = {
         hue: {
@@ -112,7 +112,7 @@ export default class State {
     }
   };
 
-  public setSaturation = async (value: number) => {
+  public setSaturation = async (value: number): Promise<void> => {
     try {
       if (value < 0 || value > 100)
         throw new Error(
@@ -129,7 +129,7 @@ export default class State {
     }
   };
 
-  public setColorTemperature = async (value: number) => {
+  public setColorTemperature = async (value: number): Promise<void> => {
     try {
       if (value < 1200 || value > 6500)
         throw new Error(
