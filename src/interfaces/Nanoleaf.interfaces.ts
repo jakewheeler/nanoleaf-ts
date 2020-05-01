@@ -35,7 +35,7 @@ export interface PanelLayout {
 }
 
 export interface LayoutValue {
-  numpPanels: number;
+  numPanels: number;
   sideLength: number;
   positionData: object[];
 }
