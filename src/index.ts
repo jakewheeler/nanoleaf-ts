@@ -3,7 +3,7 @@ import { config } from 'dotenv';
 
 config();
 
-const main = async (): Promise<void> => {
+(async (): Promise<void> => {
   let nanoleaf = new Nanoleaf({
     ipAddress: process.env.IP_ADDRESS!,
     apiVersion: '/api/v1/',
@@ -12,11 +12,9 @@ const main = async (): Promise<void> => {
   });
 
   try {
-    let f = await nanoleaf.layout.getLayout();
-    console.log(f);
+    let isOn = await nanoleaf.state.isTurnedOn();
+    console.log(isOn);
   } catch (err) {
     console.log(err);
   }
-};
-
-main();
+})();
