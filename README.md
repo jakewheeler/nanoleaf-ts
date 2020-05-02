@@ -1,6 +1,8 @@
 # nanoleaf-ts
 
-nanoleaf-ts is a package that makes interacting with your Nanoleaf Aurora more pleasant 😄 It provides a simple abstraction layer over the Aurora's local-network REST API.
+nanoleaf-ts is a package that makes interacting with your Nanoleaf Aurora more pleasant 😄
+
+It provides a simple abstraction layer over the Aurora's local-network REST API.
 
 ## Features
 
@@ -68,10 +70,10 @@ Pass in the IP address, API version, port, and auth token as strings.
 import Nanoleaf from './nanoleaf';
 
 let nanoleaf = new Nanoleaf({
-  ipAddress: '192.168.1.200',
-  apiVersion: '/api/v1/',
-  port: '16021',
-  authToken: 'myAuthToken',
+  ipAddress: '192.168.1.200', // you can check your router page to find your Aurora's IP
+  apiVersion: '/api/v1/', // you can leave this as is
+  port: '16021', // this is the standard port
+  authToken: 'myAuthToken', // you can get this by taking a look at the 'Getting an Auth Token` section
 });
 ```
 
