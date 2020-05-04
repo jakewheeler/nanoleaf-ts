@@ -133,3 +133,62 @@ Arguments:
 Arguments:
 
 - `value` - integer between 1200 and 6500
+
+#### Effects Functions
+
+`getCurrent = async (): Promise<string>` - Get current effect
+
+`getFullList = async (): Promise<string[]>` - Get array of all available effects
+
+`setCurrent = async (effectName: string): Promise<void>` - Set the current effect
+
+Arguments:
+
+- `effectName` - a valid effect name
+
+`public setWrite = async ( command: string, animName: string ): Promise<WriteResponse>` - Writes an animation? (not a ton of documentation around this: [https://documenter.getpostman.com/view/1559645/RW1gEcCH?version=latest#bff185d5-ad6f-4bef-84b6-70cadfa92e20](https://documenter.getpostman.com/view/1559645/RW1gEcCH?version=latest#bff185d5-ad6f-4bef-84b6-70cadfa92e20))
+
+Arguments:
+
+- `command` - type of command?
+- `animName` - name of animation?
+
+#### Layout Functions
+
+`public getGlobalOrientation = async (): Promise<LightValues>` - Get the global orientation of the Aurora
+
+`setGlobalOrientation = async (value: number): Promise<void>` - Set the global orientation of the Aurora
+
+Arguments:
+
+- `value` - valid integer (not much documentation around this: [https://documenter.getpostman.com/view/1559645/RW1gEcCH?version=latest#064d0e64-26fd-4cd5-99d6-d7ab68a3c66e](https://documenter.getpostman.com/view/1559645/RW1gEcCH?version=latest#064d0e64-26fd-4cd5-99d6-d7ab68a3c66e))
+
+`getLayout = async (): Promise<LayoutValue>` - Get the current panel layout
+
+#### Panels Functions
+
+`public identify = async (): Promise<void>` - Identifies the connected Aurora by flashing the panels
+
+#### Rhythm Functions
+
+`public isConnected = async (): Promise<boolean>` - Returns true if the rhythm module is connected
+
+`public isActive = async (): Promise<boolean>` - Returns true if the rhythm module is being used
+
+`public getId = async (): Promise<number>` - Returns the ID of the rhythm module
+
+`public getHardwareVersion = async (): Promise<string>` - Returns the rhythm module hardware version
+
+`public getFirmwareVersion = async (): Promise<string>` - Returns the rhythm module firmware version
+
+`public isAuxAvailable = async (): Promise<boolean>` - Returns true if an auxiliary port is connected to the rhythm module
+
+`public getMode = async (): Promise<number>` - Get the current rhythm mode
+
+`public getPositions = async (): Promise<PositionData>` - Get the position and orientation of the rhythm module in the light panels layout
+
+`public setMode = async (mode: number = 0): Promise<void>` - Set the current rhythm mode (microphone sound source or aux cable sound source)
+
+Arguments:
+
+- `mode` - 0 for microphone source, 1 for aux cable

@@ -18,7 +18,7 @@ export default class Layout {
     }
   };
 
-  public setGlobalOrientation = async (value: number) => {
+  public setGlobalOrientation = async (value: number): Promise<void> => {
     try {
       if (value < 0 || value > 360)
         throw new Error(

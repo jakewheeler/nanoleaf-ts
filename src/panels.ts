@@ -7,7 +7,7 @@ export default class Panels {
     this._url = `${url}/identify`;
   }
 
-  public identify = async () => {
+  public identify = async (): Promise<void> => {
     try {
       await Request.put(this._url);
     } catch (err) {
