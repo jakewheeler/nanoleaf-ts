@@ -134,6 +134,18 @@ Arguments:
 
 - `value` - integer between 1200 and 6500
 
+### Effects
+
+```typescript
+import Nanoleaf from './nanoleaf';
+
+let nanoleaf = new Nanoleaf({
+    ...
+});
+
+let state = nanoleaf.effects;
+```
+
 #### Effects Functions
 
 `getCurrent = async (): Promise<string>` - Get current effect
@@ -153,6 +165,18 @@ Arguments:
 - `command` - type of command?
 - `animName` - name of animation?
 
+### Layout
+
+```typescript
+import Nanoleaf from './nanoleaf';
+
+let nanoleaf = new Nanoleaf({
+    ...
+});
+
+let state = nanoleaf.layout;
+```
+
 #### Layout Functions
 
 `public getGlobalOrientation = async (): Promise<LightValues>` - Get the global orientation of the Aurora
@@ -165,9 +189,33 @@ Arguments:
 
 `getLayout = async (): Promise<LayoutValue>` - Get the current panel layout
 
+### Panels
+
+```typescript
+import Nanoleaf from './nanoleaf';
+
+let nanoleaf = new Nanoleaf({
+    ...
+});
+
+let state = nanoleaf.panels;
+```
+
 #### Panels Functions
 
 `public identify = async (): Promise<void>` - Identifies the connected Aurora by flashing the panels
+
+### Rhythm
+
+```typescript
+import Nanoleaf from './nanoleaf';
+
+let nanoleaf = new Nanoleaf({
+    ...
+});
+
+let state = nanoleaf.rhythm;
+```
 
 #### Rhythm Functions
 
