@@ -25,7 +25,7 @@ In order to use nanoleaf-ts, you'll need to acquire an authorization token for y
 Here's an example in TypeScript showing how to check if your Aurora is on or off:
 
 ```typescript
-import Nanoleaf from './nanoleaf';
+import { Nanoleaf } from 'nanoleaf-ts';
 import { config } from 'dotenv';
 
 config();
@@ -67,7 +67,7 @@ To start working with the package, create a nanoleaf object similarly to what is
 Pass in the IP address, API version, port, and auth token as strings.
 
 ```typescript
-import Nanoleaf from './nanoleaf';
+import { Nanoleaf } from 'nanoleaf-ts';
 
 let nanoleaf = new Nanoleaf({
   ipAddress: '192.168.1.200', // you can check your router page to find your Aurora's IP
@@ -84,7 +84,7 @@ let nanoleaf = new Nanoleaf({
 ### State
 
 ```typescript
-import Nanoleaf from './nanoleaf';
+import { Nanoleaf } from 'nanoleaf-ts';
 
 let nanoleaf = new Nanoleaf({
     ...
@@ -137,7 +137,7 @@ Arguments:
 ### Effects
 
 ```typescript
-import Nanoleaf from './nanoleaf';
+import { Nanoleaf } from 'nanoleaf-ts';
 
 let nanoleaf = new Nanoleaf({
     ...
@@ -168,7 +168,7 @@ Arguments:
 ### Layout
 
 ```typescript
-import Nanoleaf from './nanoleaf';
+import { Nanoleaf } from 'nanoleaf-ts';
 
 let nanoleaf = new Nanoleaf({
     ...
@@ -192,7 +192,7 @@ Arguments:
 ### Panels
 
 ```typescript
-import Nanoleaf from './nanoleaf';
+import { Nanoleaf } from 'nanoleaf-ts';
 
 let nanoleaf = new Nanoleaf({
     ...
@@ -208,7 +208,7 @@ let state = nanoleaf.panels;
 ### Rhythm
 
 ```typescript
-import Nanoleaf from './nanoleaf';
+import { Nanoleaf } from 'nanoleaf-ts';
 
 let nanoleaf = new Nanoleaf({
     ...
