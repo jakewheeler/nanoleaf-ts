@@ -1,6 +1,6 @@
 import Request from '../request';
 import { mocked } from 'ts-jest/utils';
-import Nanoleaf from '../nanoleaf';
+import { Nanoleaf } from '../nanoleaf';
 
 jest.mock('../request');
 const mockedRequest = mocked(Request, true);

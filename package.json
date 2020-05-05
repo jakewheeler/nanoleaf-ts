@@ -1,17 +1,21 @@
 {
   "name": "nanoleaf-ts",
+  "version": "0.0.0-semantically-released",
   "scripts": {
     "start": "ts-node src/index.ts",
-    "build": "tsc",
+    "build": "tsc -p .",
+    "main": "lib/index",
+    "typings": "lib/index",
     "test": "jest"
   },
   "dependencies": {},
   "devDependencies": {
     "@types/jest": "^25.1.4",
-    "jest": "^25.2.4",
-    "ts-jest": "^25.3.0",
-    "typescript": "^3.8.3",
+    "@types/node": "^13.9.5",
     "dotenv": "^8.2.0",
-    "@types/node": "^13.9.5"
+    "jest": "^25.2.4",
+    "semantic-release": "^17.0.7",
+    "ts-jest": "^25.3.0",
+    "typescript": "^3.8.3"
   }
 }

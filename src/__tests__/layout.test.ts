@@ -1,4 +1,4 @@
-import Nanoleaf from '../nanoleaf';
+import { Nanoleaf } from '../nanoleaf';
 import Request from '../request';
 import { mocked } from 'ts-jest/utils';
 import { LightValues, LayoutValue } from '../interfaces/Nanoleaf.interfaces';

@@ -1,7 +1,7 @@
-import Request from './request';
+import Request  from './request';
 import { PositionData } from './interfaces/Nanoleaf.interfaces';
 
-export default class Rhythm {
+export class Rhythm {
   private url: string;
 
   constructor(url: string) {

@@ -1,15 +1,15 @@
-import Request from './request';
+import  Request  from './request';
 import {
   NanoleafProperties,
   NanoleafAttributes,
 } from './interfaces/Nanoleaf.interfaces';
 import State from './state';
-import Effects from './effects';
-import Layout from './layout';
-import Rhythm from './rhythm';
-import Panels from './panels';
+import { Effects } from './effects';
+import { Layout } from './layout';
+import { Rhythm } from './rhythm';
+import { Panels } from './panels';
 
-class Nanoleaf {
+export class Nanoleaf {
   private _userData: NanoleafProperties;
   private _baseURL: string;
   private _state: State;
@@ -57,5 +57,3 @@ class Nanoleaf {
     return this._rhythm;
   }
 }
-
-export default Nanoleaf;

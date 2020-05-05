@@ -1,4 +1,4 @@
-import Request from './request';
+import  Request from './request';
 
 type MinMax = {
   maxValue: number;
@@ -25,7 +25,7 @@ type WriteResponse = {
   direction: string;
 };
 
-export default class Effects {
+export class Effects {
   private url: string;
 
   constructor(url: string) {

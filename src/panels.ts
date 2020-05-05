@@ -1,6 +1,6 @@
 import Request from './request';
 
-export default class Panels {
+export class Panels {
   private _url: string;
 
   constructor(url: string) {

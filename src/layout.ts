@@ -1,7 +1,7 @@
-import Request from './request';
+import Request  from './request';
 import { LightValues, LayoutValue } from './interfaces/Nanoleaf.interfaces';
 
-export default class Layout {
+export class Layout {
   private _url: string;
 
   constructor(url: string) {
