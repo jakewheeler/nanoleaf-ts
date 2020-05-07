@@ -10,6 +10,6 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - run: yarn
-      - run: ls
+      - run: ls src
       - run: yarn build
       - run: yarn test
