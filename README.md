@@ -1,6 +1,6 @@
 # nanoleaf-ts
 
-nanoleaf-ts is a package that makes interacting with your Nanoleaf Aurora more pleasant 😄
+nanoleaf-ts is a package that makes interacting with your Nanoleaf Aurora more pleasant 🚦
 
 It provides a simple abstraction layer over the Aurora's local-network REST API.
 
