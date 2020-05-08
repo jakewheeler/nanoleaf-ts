@@ -2,8 +2,11 @@
   "name": "nanoleaf-ts",
   "version": "0.0.0-semantically-released",
   "description": "nanoleaf-ts is a package that makes interacting with your Nanoleaf Aurora more pleasant.",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "files": [
+    "lib/**/*"
+  ],
   "scripts": {
     "start": "ts-node src/index.ts",
     "build": "tsc -p .",
