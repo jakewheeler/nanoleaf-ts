@@ -8,7 +8,7 @@ const mockedRequest = mocked(Request, true);
 const nanoleaf = new Nanoleaf({
   ipAddress: '192.168.1.19',
   apiVersion: '/api/v1/',
-  port: '50595!',
+  port: '50595',
   authToken: 'randomAuthToken',
 });
 
@@ -52,6 +52,33 @@ mockedRequest.get.mockResolvedValue({
 });
 
 describe('Nanoleaf', () => {
+  test('Should create Nanoleaf instance', () => {
+    let noOptionalArgs = new Nanoleaf({ ipAddress: '/', authToken: '12' });
+    expect(noOptionalArgs).toBeInstanceOf(Nanoleaf);
+
+    let portOnly = new Nanoleaf({
+      ipAddress: '/',
+      authToken: '12',
+      port: '12020',
+    });
+    expect(portOnly).toBeInstanceOf(Nanoleaf);
+
+    let apiVersionOnly = new Nanoleaf({
+      ipAddress: '/',
+      authToken: '12',
+      apiVersion: '/api/v1/',
+    });
+    expect(apiVersionOnly).toBeInstanceOf(Nanoleaf);
+
+    let allArgs = new Nanoleaf({
+      ipAddress: '/',
+      authToken: '12',
+      apiVersion: '/api/v1/',
+      port: '15050',
+    });
+    expect(allArgs).toBeInstanceOf(Nanoleaf);
+  });
+
   test('Should get correct controller info', async () => {
     let fn = await nanoleaf.controllerInfo();
 
