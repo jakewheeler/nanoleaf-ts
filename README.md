@@ -39,8 +39,6 @@ config();
 (async (): Promise<void> => {
   let nanoleaf = new Nanoleaf({
     ipAddress: process.env.IP_ADDRESS!,
-    apiVersion: '/api/v1/',
-    port: process.env.PORT!,
     authToken: process.env.AUTH_TOKEN!,
   });
 
@@ -53,7 +51,7 @@ config();
 })();
 ```
 
-Note that this example is loading the IP address, port, and authToken from the environment. This is not required but strongly suggested.
+Note that this example is loading the IP address and authentication token from environment variables using [dotenv](https://github.com/motdotla/dotenv). This is not required but is suggested.
 
 ## Documentation
 
@@ -64,22 +62,22 @@ nanoleaf-ts is composed of six main classes:
 - `effects` - set current effect, get list of available effects, etc.
 - `layout` - general panel layout information
 - `panels` - identification functionality
-- `rhythm` - accessing rhythm module properties
+- `rhythm` - rhythm module functionality
 
 ### Creating the Nanoleaf Object
 
 To start working with the package, create a nanoleaf object similarly to what is shown below.
 
-Pass in the IP address, API version, port, and auth token as strings.
+Pass in the IP address and authentication token as strings.
 
 ```typescript
 import { Nanoleaf } from 'nanoleaf-ts';
 
 let nanoleaf = new Nanoleaf({
   ipAddress: '192.168.1.200', // you can check your router page to find your Aurora's IP
-  apiVersion: '/api/v1/', // you can leave this as is
-  port: '16021', // this is the standard port
   authToken: 'myAuthToken', // you can get this by taking a look at the 'Getting an Auth Token` section
+  apiVersion: '/api/v1/', // optional: uses this value by default
+  port: '16021', // optional: uses this value by default
 });
 ```
 
@@ -149,7 +147,7 @@ let nanoleaf = new Nanoleaf({
     ...
 });
 
-let state = nanoleaf.effects;
+let effects = nanoleaf.effects;
 ```
 
 #### Effects Functions
@@ -180,7 +178,7 @@ let nanoleaf = new Nanoleaf({
     ...
 });
 
-let state = nanoleaf.layout;
+let layout = nanoleaf.layout;
 ```
 
 #### Layout Functions
@@ -204,7 +202,7 @@ let nanoleaf = new Nanoleaf({
     ...
 });
 
-let state = nanoleaf.panels;
+let panels = nanoleaf.panels;
 ```
 
 #### Panels Functions
@@ -220,7 +218,7 @@ let nanoleaf = new Nanoleaf({
     ...
 });
 
-let state = nanoleaf.rhythm;
+let rhythm = nanoleaf.rhythm;
 ```
 
 #### Rhythm Functions
