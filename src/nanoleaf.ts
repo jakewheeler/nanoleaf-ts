@@ -1,4 +1,4 @@
-import  Request  from './request';
+import Request from './request';
 import {
   NanoleafProperties,
   NanoleafAttributes,
@@ -8,6 +8,49 @@ import { Effects } from './effects';
 import { Layout } from './layout';
 import { Rhythm } from './rhythm';
 import { Panels } from './panels';
+
+// class NanoleafProperties {
+//   private _ipAddress: string;
+//   private _apiVersion: string = '/api/v1/';
+//   private _authToken: string;
+//   private _port: string = '16021';
+
+//   constructor(
+//     ipAddress: string,
+//     apiVersion: string,
+//     authToken: string,
+//     port: string
+//   ) {
+//     this._ipAddress = ipAddress;
+//     this._apiVersion = apiVersion;
+//     this._authToken = authToken;
+//     this._port = port;
+//   }
+
+//   public get ipAddress(): string {
+//     return this._ipAddress;
+//   }
+
+//   public get apiVersion(): string {
+//     return this._apiVersion;
+//   }
+
+//   public get authToken(): string {
+//     return this._authToken;
+//   }
+
+//   public get port(): string {
+//     return this._port;
+//   }
+// }
+
+function provideUserDataDefaults(ud: NanoleafProperties) {
+  let newUserData = { ...ud };
+  if (!newUserData.apiVersion) newUserData.apiVersion = '/api/v1/';
+  if (!newUserData.port) newUserData.port = '16021';
+
+  return newUserData;
+}
 
 export class Nanoleaf {
   private _userData: NanoleafProperties;
@@ -19,7 +62,7 @@ export class Nanoleaf {
   private _panels: Panels;
 
   constructor(userData: NanoleafProperties) {
-    this._userData = userData;
+    this._userData = provideUserDataDefaults(userData);
     this._baseURL = `http://${this._userData.ipAddress}:${this._userData.port}${this._userData.apiVersion}${this._userData.authToken}`;
     this._state = new State(this._baseURL);
     this._effects = new Effects(this._baseURL);

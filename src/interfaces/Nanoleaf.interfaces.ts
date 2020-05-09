@@ -1,8 +1,8 @@
 export interface NanoleafProperties {
   ipAddress: string;
-  apiVersion: string;
+  apiVersion?: string;
   authToken: string;
-  port: string;
+  port?: string;
 }
 
 export interface OnOffState {
