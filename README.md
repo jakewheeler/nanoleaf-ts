@@ -14,7 +14,13 @@ It provides a simple abstraction layer over the Aurora's local-network REST API.
 
 ## Installation
 
+Yarn:
+
 `yarn add nanoleaf-ts`
+
+NPM:
+
+`npm install nanoleaf-ts`
 
 ## Getting an Auth Token
 
