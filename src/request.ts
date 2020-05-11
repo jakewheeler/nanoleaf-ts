@@ -94,6 +94,60 @@ export default class Request {
     });
   };
 
+  public static post = <T>(url: string, body?: object): Promise<T> => {
+    return new Promise<T>((resolve, reject) => {
+      const bodyStr = JSON.stringify(body);
+      const parsedUrl = new URL(url);
+
+      let urlCheck = Request.urlHasCorrectProtocol(url);
+
+      if (!urlCheck.correct) {
+        return reject(
+          new Error(
+            `Protocol must be "http", can not be "${urlCheck.protocol}"`
+          )
+        );
+      }
+
+      const options: http.RequestOptions = {
+        hostname: parsedUrl.hostname,
+        port: parsedUrl.port,
+        path: parsedUrl.pathname,
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Content-Length': bodyStr?.length ?? 0,
+        },
+      };
+
+      let data: any = [];
+      http
+        .request(options, (res) => {
+          if (Request.statusCodeOutOfRange(res.statusCode!)) {
+            return reject(new Error(`Status code returned ${res.statusCode}`));
+          }
+
+          res.on('data', (d) => {
+            data.push(d);
+          });
+
+          res.on('end', () => {
+            try {
+              if (data?.length)
+                data = JSON.parse(Buffer.concat(data).toString());
+            } catch (e) {
+              reject(e);
+            }
+            resolve(data);
+          });
+        })
+        .on('error', (e) => {
+          reject(e);
+        })
+        .write(bodyStr || '');
+    });
+  };
+
   private static urlHasCorrectProtocol(url: string): UrlProtocalResponse {
     let protocol = new URL(url).protocol;
     if (protocol !== 'http:') return { correct: false, protocol };
