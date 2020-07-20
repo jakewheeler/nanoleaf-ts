@@ -166,7 +166,7 @@ Arguments:
 
 Arguments:
 
-- `command` - type of command?
+- `command` - name of command?
 - `animName` - name of animation?
 
 ### Layout
