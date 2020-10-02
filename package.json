@@ -12,7 +12,10 @@
     "build": "tsc -p .",
     "test": "jest"
   },
-  "dependencies": {},
+  "dependencies": {
+    "mem": "4.0.0",
+    "yargs-parser": "13.1.2"
+  },
   "devDependencies": {
     "@types/jest": "^25.1.4",
     "@types/node": "^13.9.5",
