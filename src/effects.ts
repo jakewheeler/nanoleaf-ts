@@ -32,7 +32,7 @@ export class Effects {
     this.url = `${url}/effects`;
   }
 
-  public getCurrent = async (): Promise<string> => {
+  async getCurrent(): Promise<string> {
     try {
       const selectUrl = `${this.url}/select`;
       const resp = await Request.get<string>(selectUrl);
@@ -42,7 +42,7 @@ export class Effects {
     }
   };
 
-  public getFullList = async (): Promise<string[]> => {
+  async getFullList(): Promise<string[]> {
     try {
       const listUrl = `${this.url}/effectsList`;
       const response = await Request.get<string[]>(listUrl);
@@ -50,9 +50,9 @@ export class Effects {
     } catch (err) {
       throw err;
     }
-  };
+  }
 
-  public setCurrent = async (effectName: string): Promise<void> => {
+  async setCurrent(effectName: string): Promise<void> {
     try {
       if (effectName === '') throw new Error('An effectName is required');
       if (!(await this.effectExists(effectName)))
@@ -70,10 +70,10 @@ export class Effects {
     }
   };
 
-  public setWrite = async (
+  async setWrite(
     command: string,
     animName: string
-  ): Promise<WriteResponse> => {
+  ): Promise<WriteResponse> {
     try {
       if (!command || !animName) throw new Error('Arguments cannot be empty.');
       if (!(await this.effectExists(animName)))
@@ -95,7 +95,7 @@ export class Effects {
     }
   };
 
-  private effectExists = async (effectName: string): Promise<boolean> => {
+  private async effectExists(effectName: string): Promise<boolean> {
     try {
       const effectList = await this.getFullList();
 

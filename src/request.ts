@@ -101,7 +101,7 @@ export default class Request {
     return { correct: true, protocol };
   }
 
-  private static statusCodeOutOfRange = (statusCode: number): boolean => {
+  private static statusCodeOutOfRange(statusCode: number): boolean {
     return statusCode! < 200 || statusCode! >= 300 ? true : false;
   };
 }

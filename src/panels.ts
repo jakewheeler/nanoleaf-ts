@@ -7,7 +7,7 @@ export class Panels {
     this._url = `${url}/identify`;
   }
 
-  public identify = async (): Promise<void> => {
+  async identify(): Promise<void> {
     try {
       await Request.put(this._url);
     } catch (err) {

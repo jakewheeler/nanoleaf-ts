@@ -8,7 +8,7 @@ export default class State {
     this.url = `${url}/state`;
   }
 
-  public isTurnedOn = async (): Promise<boolean> => {
+  async isTurnedOn(): Promise<boolean> {
     try {
       const onOffUrl = `${this.url}/on`;
       const { value } = await Request.get<OnOffState>(onOffUrl);
@@ -19,13 +19,13 @@ export default class State {
     }
   };
 
-  public toggleOnOffState = async (): Promise<boolean> => {
+  async toggleOnOffState(): Promise<boolean> {
     const isOn = await this.isTurnedOn();
     const currentState = await this.modifyOnOffState(isOn);
     return currentState;
   };
 
-  public getBrightness = async (): Promise<LightValues> => {
+  async getBrightness(): Promise<LightValues> {
     try {
       const brightnessUrl = `${this.url}/brightness`;
       const response = await Request.get<LightValues>(brightnessUrl);
@@ -35,7 +35,7 @@ export default class State {
     }
   };
 
-  public getHue = async (): Promise<LightValues> => {
+  async getHue(): Promise<LightValues> {
     try {
       const hueUrl = `${this.url}/hue`;
       const response = await Request.get<LightValues>(hueUrl);
@@ -45,7 +45,7 @@ export default class State {
     }
   };
 
-  public getSaturation = async (): Promise<LightValues> => {
+  async getSaturation(): Promise<LightValues> {
     try {
       const satUrl = `${this.url}/sat`;
       const response = await Request.get<LightValues>(satUrl);
@@ -55,7 +55,7 @@ export default class State {
     }
   };
 
-  public getColorTemperature = async (): Promise<LightValues> => {
+  async getColorTemperature(): Promise<LightValues> {
     try {
       const ctUrl = `${this.url}/ct`;
       const response = await Request.get<LightValues>(ctUrl);
@@ -65,7 +65,7 @@ export default class State {
     }
   };
 
-  public getColorMode = async (): Promise<string> => {
+   async getColorMode(): Promise<string> {
     try {
       const colorModeUrl = `${this.url}/colorMode`;
       const response = await Request.get<string>(colorModeUrl);
@@ -75,10 +75,10 @@ export default class State {
     }
   };
 
-  public setBrightness = async (
+  async setBrightness(
     value: number,
     duration?: number
-  ): Promise<void> => {
+  ): Promise<void> {
     try {
       if (value < 0 || value > 100)
         throw new Error(
@@ -97,7 +97,7 @@ export default class State {
     }
   };
 
-  public setHue = async (value: number): Promise<void> => {
+  async setHue(value: number): Promise<void> {
     try {
       if (value < 0 || value > 360)
         throw new Error('Hue value out of range. Must be within range 0-360.');
@@ -112,7 +112,7 @@ export default class State {
     }
   };
 
-  public setSaturation = async (value: number): Promise<void> => {
+  async setSaturation(value: number): Promise<void> {
     try {
       if (value < 0 || value > 100)
         throw new Error(
@@ -129,7 +129,7 @@ export default class State {
     }
   };
 
-  public setColorTemperature = async (value: number): Promise<void> => {
+  async setColorTemperature(value: number): Promise<void> {
     try {
       if (value < 1200 || value > 6500)
         throw new Error(
@@ -146,7 +146,7 @@ export default class State {
     }
   };
 
-  private modifyOnOffState = async (state: boolean): Promise<boolean> => {
+  async modifyOnOffState (state: boolean): Promise<boolean> {
     try {
       const body = {
         on: {
