@@ -13,8 +13,6 @@
     "test": "jest"
   },
   "dependencies": {
-    "mem": "4.0.0",
-    "yargs-parser": "13.1.2"
   },
   "devDependencies": {
     "@types/jest": "^25.1.4",
@@ -24,5 +22,10 @@
     "semantic-release": "^17.0.7",
     "ts-jest": "^25.3.0",
     "typescript": "^3.8.3"
+  },
+  "resolutions": {
+    "mem": "^8.0.0",
+    "yargs-parser": "^20.2.3",
+    "npm-user-validate": "^1.0.1"
   }
 }

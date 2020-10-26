@@ -8,7 +8,7 @@ export class Rhythm {
     this.url = `${url}/rhythm`;
   }
 
-  public isConnected = async (): Promise<boolean> => {
+  async isConnected(): Promise<boolean> {
     try {
       const connectedUrl = `${this.url}/rhythmConnected`;
       const currentState = await Request.get<boolean>(connectedUrl);
@@ -18,7 +18,7 @@ export class Rhythm {
     }
   };
 
-  public isActive = async (): Promise<boolean> => {
+  async isActive(): Promise<boolean> {
     try {
       const activeUrl = `${this.url}/rhythmActive`;
       const currentState = await Request.get<boolean>(activeUrl);
@@ -28,7 +28,7 @@ export class Rhythm {
     }
   };
 
-  public getId = async (): Promise<number> => {
+  async getId(): Promise<number> {
     try {
       const idUrl = `${this.url}/rhythmId`;
       const currentState = await Request.get<number>(idUrl);
@@ -38,7 +38,7 @@ export class Rhythm {
     }
   };
 
-  public getHardwareVersion = async (): Promise<string> => {
+  async getHardwareVersion(): Promise<string> {
     try {
       const hwUrl = `${this.url}/hardwareVersion`;
       const currentState = await Request.get<string>(hwUrl);
@@ -48,7 +48,7 @@ export class Rhythm {
     }
   };
 
-  public getFirmwareVersion = async (): Promise<string> => {
+  async getFirmwareVersion(): Promise<string> {
     try {
       const fwUrl = `${this.url}/firmwareVersion`;
       const currentState = await Request.get<string>(fwUrl);
@@ -58,7 +58,7 @@ export class Rhythm {
     }
   };
 
-  public isAuxAvailable = async (): Promise<boolean> => {
+  async isAuxAvailable(): Promise<boolean> {
     try {
       const auxUrl = `${this.url}/auxAvailable`;
       const currentState = await Request.get<boolean>(auxUrl);
@@ -68,7 +68,7 @@ export class Rhythm {
     }
   };
 
-  public getMode = async (): Promise<number> => {
+  async getMode(): Promise<number> {
     try {
       const auxUrl = `${this.url}/rhythmMode`;
       const currentState = await Request.get<number>(auxUrl);
@@ -78,7 +78,7 @@ export class Rhythm {
     }
   };
 
-  public getPositions = async (): Promise<PositionData> => {
+  async getPositions(): Promise<PositionData> {
     try {
       const posUrl = `${this.url}/rhythmPos`;
       const currentState = await Request.get<PositionData>(posUrl);
@@ -88,7 +88,7 @@ export class Rhythm {
     }
   };
 
-  public setMode = async (mode: number = 0): Promise<void> => {
+  async setMode(mode: number = 0): Promise<void> {
     // 0 = microphone mode
     // 1 = aux mode
     try {

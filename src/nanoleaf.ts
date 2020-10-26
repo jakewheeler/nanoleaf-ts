@@ -36,7 +36,7 @@ export class Nanoleaf {
     this._panels = new Panels(this._baseURL);
   }
 
-  public controllerInfo = async (): Promise<NanoleafAttributes> => {
+  async controllerInfo(): Promise<NanoleafAttributes> {
     try {
       const info = await Request.get<NanoleafAttributes>(this._baseURL);
       return info;
@@ -45,23 +45,23 @@ export class Nanoleaf {
     }
   };
 
-  public get state(): State {
+  get state(): State {
     return this._state;
   }
 
-  public get effects(): Effects {
+  get effects(): Effects {
     return this._effects;
   }
 
-  public get layout(): Layout {
+  get layout(): Layout {
     return this._layout;
   }
 
-  public get panels(): Panels {
+  get panels(): Panels {
     return this._panels;
   }
 
-  public get rhythm(): Rhythm {
+  get rhythm(): Rhythm {
     return this._rhythm;
   }
 }

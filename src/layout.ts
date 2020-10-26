@@ -8,7 +8,7 @@ export class Layout {
     this._url = `${url}/panelLayout`;
   }
 
-  public getGlobalOrientation = async (): Promise<LightValues> => {
+  async getGlobalOrientation(): Promise<LightValues> {
     try {
       const globalOrientationUrl = `${this._url}/globalOrientation`;
       const response = await Request.get<LightValues>(globalOrientationUrl);
@@ -18,7 +18,7 @@ export class Layout {
     }
   };
 
-  public setGlobalOrientation = async (value: number): Promise<void> => {
+  async setGlobalOrientation(value: number): Promise<void> {
     try {
       if (value < 0 || value > 360)
         throw new Error(
@@ -34,7 +34,7 @@ export class Layout {
     }
   };
 
-  public getLayout = async (): Promise<LayoutValue> => {
+  async getLayout(): Promise<LayoutValue> {
     try {
       const layoutUrl = `${this._url}/layout`;
       const response = await Request.get<LayoutValue>(layoutUrl);
